@@ -1,0 +1,6 @@
+# ignore valuable files
+
+.venv/
+.env
+package-lock.json
+package.json
