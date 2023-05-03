@@ -1,9 +1,76 @@
 from django.shortcuts import render, HttpResponse
-
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from django.contrib.auth import authenticate, login, logout
+from .models import *
+from django.core.serializers import serialize
+import json
 # Create your views here.
+
 
 def index(request):
     print('home!')
     theIndex = open('static/index.html').read()
     response = HttpResponse(theIndex)
     return HttpResponse(response)
+
+
+@api_view(["POST"])
+def user_sign_up(request):
+    email = request.data['email']
+    password = request.data['password']
+    handle = request.data['handle']
+    super_user = False
+    staff = False
+    if request.data['super']:
+        super_user = request.data['super']
+    if request.data['staff']:
+        staff = request.data['staff']
+    try:
+        new_user = App_User.objects.create_user(
+            username=handle, handle=handle, email=email, password=password, is_superuser=super_user, is_staff=staff)
+        new_user.save()
+        return JsonResponse({"Success": f"{handle}, was created as a user"})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False})
+
+
+@api_view(["POST"])
+def user_sign_in(request):
+    handle = request.data['handle']
+    password = request.data['password']
+    print(request._request)
+    user = authenticate(username=handle, password=password)
+    if user is not None and user.is_active:
+        try:
+            login(request._request, user)
+            return JsonResponse({'signin': True})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'sign': False})
+    return JsonResponse({'success': True})
+
+
+@api_view(["GET"])
+def curr_user(request):
+    if request.user.is_authenticated:
+        print(request.user)
+        user_info = serialize(
+            "json", [request.user], fields=['handle', 'email'])
+        user_info_workable = json.loads(user_info)
+        return JsonResponse({"user_info": user_info_workable[0]})
+    else:
+        return JsonResponse({"user": None})
+
+
+api_view(['POST'])
+
+
+def user_sign_out(request):
+    try:
+        logout(request)
+        return JsonResponse({"signout": True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"signout": False})
