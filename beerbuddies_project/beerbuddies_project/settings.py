@@ -27,7 +27,8 @@ load_dotenv()
 try:
     SECRET_KEY = os.environ['secretkey']
 except KeyError as err:
-    raise RuntimeError('No SECRET_KEY found. Review README.md and check your .env variable') from err
+    raise RuntimeError(
+        'No SECRET_KEY found. Review README.md and check your .env variable') from err
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,3 +136,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'beerbuddies_app.App_User'
