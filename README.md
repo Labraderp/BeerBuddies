@@ -1,5 +1,7 @@
 # BeerBuddies
 
+# Trello: https://trello.com/b/zZfNgkCT/beer-buddy
+
 Make sure to set up your .env variables!
 
 - 1: Clone the branch into your local machine
