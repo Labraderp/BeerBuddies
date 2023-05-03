@@ -16,7 +16,8 @@ export default function UserProfilePage() {
                         <Row>Beer Preferences</Row>
                     </Col>
                     <Col>
-                        
+                        <Row>Token Count</Row>
+                        <Row>Recent Reviews</Row>
                     </Col>
                 </Row>
             </Container>
