@@ -4,3 +4,5 @@
 .env
 env/
 __pycache__/
+
+*/static/assets/
