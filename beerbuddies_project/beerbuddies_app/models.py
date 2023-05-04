@@ -10,7 +10,7 @@ class App_User(AbstractUser):
     USERNAME_FIELD = "handle"
     REQUIRED_FIELDS = []
     profile_info = models.TextField(
-        black=True, null=True, max_length=1000, default='')
+        blank=True, null=True, max_length=1000, default='')
     token_amount = models.IntegerField(default=0)
 
     def __str__(self):
