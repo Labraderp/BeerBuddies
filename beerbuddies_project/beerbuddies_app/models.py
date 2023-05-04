@@ -9,11 +9,21 @@ class App_User(AbstractUser):
         max_length=255, null=False, blank=False, unique=True)
     USERNAME_FIELD = "handle"
     REQUIRED_FIELDS = []
-    profile_info = models.TextField(max_length=1000, default='')
-    token_amount = models.IntegerField(blank=True, default=0)
+    profile_info = models.TextField(
+        black=True, null=True, max_length=1000, default='')
+    token_amount = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.handle} | {self.email}"
+
+
+class Beer(models.Model):
+    name = models.CharField(max_length=255)
+    abv = models.DecimalField(max_digits=4, decimal_places=1)
+    description = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return f"{self.name} | {self.abv} |{self.description}"
 
 
 # class Beer_Garden(models.Model):
@@ -26,13 +36,3 @@ class App_User(AbstractUser):
 
 #     # def __str__(self):
 #     #     return f"{self.beer} ({self.user.handle})"
-
-
-# class Beer(models.Model):
-#     name = models.CharField(max_length=255)
-#     description = models.TextField(max_length=1000)
-#     beer_garden = models.ManyToManyField(
-#         Beer_Garden, related_name="beer_gardens")
-
-#     def __str__(self):
-#         return f"{self.name} | {self.description}"
