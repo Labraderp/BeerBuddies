@@ -13,7 +13,7 @@ const RestaurantListing = ({ name, distance, onClick }) => (
 );
 
 // Fake restaurants/distance
-const HomePage = () => {
+const Home = () => {
   const [restaurants, setRestaurants] = useState([
     { name: 'Restaurant 1', distance: 1.5 },
     { name: 'Restaurant 2', distance: 0.5 },
@@ -24,12 +24,9 @@ const HomePage = () => {
     alert(`You clicked on ${name}`);
   };
 
-  const handleButtonClick = (destination) => {
-    alert(`Navigating to ${destination}`);
-  };
 
   return (
-    <div className="home-page">
+    <div className="home">
       <h1>Homepage</h1>
       <div className="restaurant-list">
         {restaurants.map((restaurant, index) => (
@@ -41,16 +38,13 @@ const HomePage = () => {
           />
         ))}
       </div>
-      {/* Use Link to be redirected to their component */}  
-      {/* 
-      <Link to="/buddy-list">Buddy List</Link>
-      <Link to="/user-settings">User Settings</Link>
-      <Link to="/beer-garden">Beer Garden</Link> */}
-      <button onClick={() => handleButtonClick('Buddy List')}>Buddy List</button>
-      <button onClick={() => handleButtonClick('User Settings')}>User Settings</button>
-      <button onClick={() => handleButtonClick('Beer Garden')}>Beer Garden</button>
+    
+      <Link to="/BuddiesPage">BuddyList </Link>
+      {/* <Link to="/user-settings">User Settings</Link> */}
+      <Link to="/BeerGarden">BeerGarden </Link>
+      
     </div>
   );
 };
 
-export default HomePage;
+export default Home;
