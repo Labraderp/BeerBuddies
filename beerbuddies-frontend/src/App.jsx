@@ -1,28 +1,30 @@
-import React from 'react';
-import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import Home from './components/Home';
-import BeerGarden from './pages/BeerGarden';
-import BuddiesPage from './pages/BuddiesPage';
-
-
-
-
+import SignUp from './components/SignUp';
+import LogIn from './components/LogIn';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function App() {
   
-  return (
-    <Router>
+  const [user, setUser] = useState(null)
 
-    <Routes>
-        <Route path="/" element={<Navigate to="/Home" />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/BuddiesPage" element={<BuddiesPage />} />
-        {/* <Route path="/UserSettingsPage" element={<UserSettings />} /> */}
-        <Route path="/BeerGarden" element={<BeerGarden />} />
-        
-    </Routes>
-  
-  </Router>
-  );
+  return (
+    <div className="App">
+        <Container>
+          {(user == null) ?
+          <Row>
+            <Col><SignUp /></Col>
+            <Col><LogIn /></Col>
+          </Row>
+          :
+          <Row>
+            <Home />
+          </Row>
+          }
+        </Container>
+    </div>
+  )
 }
 export default App;
