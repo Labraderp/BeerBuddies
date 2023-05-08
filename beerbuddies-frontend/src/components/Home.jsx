@@ -43,10 +43,10 @@ const Home = () => {
           />
         ))}
       </div>
-    
-      <Link to="/BuddiesPage">BuddyList </Link>
-      <Link to="/UserProfilePage">ProfilePage  </Link>
-      <Link to="/BeerGarden">BeerGarden </Link>
+      <Link to="/RestaurantList"> RestaurantList| </Link>
+      <Link to="/BuddiesPage"> BuddyList| </Link>
+      <Link to="/UserProfilePage"> ProfilePage|  </Link>
+      <Link to="/BeerGarden"> BeerGarden </Link>
       <Button onClick={(e) => [e.preventDefault(), signOut(setUser)]}>Sign Out</Button>
     </div>
   );
