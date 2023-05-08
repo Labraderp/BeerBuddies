@@ -7,3 +7,4 @@ __pycache__/
 
 */static/assets/
 */migrations/__pycache__
+static/index.html
