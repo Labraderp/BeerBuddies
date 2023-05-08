@@ -45,17 +45,16 @@ def user_sign_in(request):
     print(request._request)
     user = authenticate(username=handle, password=password)
     print(user)
-    # if user is not None and user.is_active:
-    if 1 == 1:
+    if user is not None and user.is_active:
         try:
             login(request._request, user)
             print('logged in')
-            return JsonResponse({'signin': True})
+            return JsonResponse({'success': True})
         except Exception as e:
             print(e)
-            return JsonResponse({'sign': False})
+            return JsonResponse({'success': False})
     print('other')
-    return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
 
 
 @api_view(["GET"])
