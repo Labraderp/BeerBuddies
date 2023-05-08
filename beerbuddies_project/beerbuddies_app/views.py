@@ -64,12 +64,12 @@ def curr_user(request):
         user_info = serialize(
             "json", [request.user], fields=['handle', 'email'])
         user_info_workable = json.loads(user_info)
-        return JsonResponse({"user_info": user_info_workable[0]})
+        return JsonResponse({"user": user_info_workable[0]})
     else:
         return JsonResponse({"user": None})
 
 
-api_view(['POST'])
+@api_view(['POST'])
 def user_sign_out(request):
     try:
         logout(request)
@@ -77,7 +77,8 @@ def user_sign_out(request):
     except Exception as e:
         print(e)
         return JsonResponse({"signout": False})
-    
+
+
 @api_view(["POST"])
 def user_sign_up(request):
     email = request.data['email']
@@ -88,17 +89,18 @@ def user_sign_up(request):
 
     if 'super' in request.data:
         super_user = request.data['super']
-    
+
     if 'staff' in request.data:
         staff = request.data['staff']
 
     if email == '' or password == '' or handle == '':
-        return JsonResponse({"signup" : False, "reason" : "empty_field"})
+        return JsonResponse({"signup": False, "reason": "empty_field"})
 
     try:
-        new_user = App_User.objects.create_user(username = handle, handle = handle, email = email, password = password)
+        new_user = App_User.objects.create_user(
+            username=handle, handle=handle, email=email, password=password)
         new_user.save()
-        return JsonResponse({"signup" : True})
+        return JsonResponse({"signup": True})
     except Exception as e:
         print(e)
-        return JsonResponse({"signup" : False, 'reason' : 'already_signed_up'})
+        return JsonResponse({"signup": False, 'reason': 'already_signed_up'})

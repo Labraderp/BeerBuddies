@@ -25,22 +25,23 @@ function App() {
     getCurrUser()
   }, [])
 
-  
+
+
   return (
     <div className="App">
       <userContext.Provider value={{user, setUser}}>
         <Container >
-          {(user == null) ?
+          {user ?
           <div>
           <Row>
-            <Col><SignUp /></Col>
-            <Col><LogIn /></Col>
+            <Home />
           </Row>
           </div>
           :
           <div>
           <Row>
-            <Home />
+            <Col><SignUp /></Col>
+            <Col><LogIn /></Col>
           </Row>
           </div>
           }
