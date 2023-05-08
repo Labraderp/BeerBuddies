@@ -48,6 +48,7 @@ import BeerGarden from "./pages/BeerGarden";
 import RestaurantPage from "./pages/RestaurantPage";
 import BeerList from "./pages/BeerList"
 import BeerPage from "./pages/BeerPage";
+import RestaurantList from "./pages/RestaurantList";
 
 const router = (
   <Router>
@@ -60,6 +61,7 @@ const router = (
       <Route path="/RestaurantPage" element={<RestaurantPage/>} />
       <Route path="/RestaurantPage/BeerList" element={<BeerList/>}/>
       <Route path="/BeerPage" element={<BeerPage/>}/>
+      <Route path="/RestaurantList" element={<RestaurantList/>}/>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   </Router>
