@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function RestaurantPage() {
 
     return (
@@ -13,7 +15,7 @@ export default function RestaurantPage() {
                 <div>
                     <h4>Restaurant Name</h4>
                     <h4>Restaurant URL</h4>  
-                    <button onClick={()=>alert('This button will call a list of beers from the restaurant"s beers list')}>Beer List</button>              
+                    <button><Link to="/RestaurantPage/BeerList">Beer List</Link></button>              
                 </div>
             </div>  
         </div>

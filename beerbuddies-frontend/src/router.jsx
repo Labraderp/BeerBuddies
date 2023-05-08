@@ -45,6 +45,9 @@ import Home from "./components/Home";
 import BuddiesPage from "./pages/BuddiesPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import BeerGarden from "./pages/BeerGarden";
+import RestaurantPage from "./pages/RestaurantPage";
+import BeerList from "./pages/BeerList"
+import BeerPage from "./pages/BeerPage";
 
 const router = (
   <Router>
@@ -54,6 +57,9 @@ const router = (
       <Route path="/BuddiesPage" element={<BuddiesPage />} />
       <Route path="/BeerGarden" element={<BeerGarden />} />
       <Route path="/UserProfilePage" element={<UserProfilePage />} />
+      <Route path="/RestaurantPage" element={<RestaurantPage/>} />
+      <Route path="/RestaurantPage/BeerList" element={<BeerList/>}/>
+      <Route path="/BeerPage" element={<BeerPage/>}/>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   </Router>
