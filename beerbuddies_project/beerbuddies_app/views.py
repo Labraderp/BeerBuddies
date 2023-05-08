@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.core.serializers import serialize
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
@@ -40,15 +41,20 @@ def user_sign_up(request):
 def user_sign_in(request):
     handle = request.data['handle']
     password = request.data['password']
+    print(handle, password)
     print(request._request)
     user = authenticate(username=handle, password=password)
-    if user is not None and user.is_active:
+    print(user)
+    # if user is not None and user.is_active:
+    if 1 == 1:
         try:
             login(request._request, user)
+            print('logged in')
             return JsonResponse({'signin': True})
         except Exception as e:
             print(e)
             return JsonResponse({'sign': False})
+    print('other')
     return JsonResponse({'success': True})
 
 
@@ -65,8 +71,6 @@ def curr_user(request):
 
 
 api_view(['POST'])
-
-
 def user_sign_out(request):
     try:
         logout(request)
@@ -74,3 +78,28 @@ def user_sign_out(request):
     except Exception as e:
         print(e)
         return JsonResponse({"signout": False})
+    
+@api_view(["POST"])
+def user_sign_up(request):
+    email = request.data['email']
+    password = request.data['password']
+    handle = request.data['handle']
+    super_user = False
+    staff = False
+
+    if 'super' in request.data:
+        super_user = request.data['super']
+    
+    if 'staff' in request.data:
+        staff = request.data['staff']
+
+    if email == '' or password == '' or handle == '':
+        return JsonResponse({"signup" : False, "reason" : "empty_field"})
+
+    try:
+        new_user = App_User.objects.create_user(username = handle, handle = handle, email = email, password = password)
+        new_user.save()
+        return JsonResponse({"signup" : True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"signup" : False, 'reason' : 'already_signed_up'})

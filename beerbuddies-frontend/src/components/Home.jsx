@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { signOut } from '../utilities';
+import { userContext } from '../App';
 
 const RestaurantListing = ({ name, distance, onClick }) => (
   <div className="restaurant-listing">
@@ -19,6 +22,8 @@ const Home = () => {
     { name: 'Restaurant 2', distance: 0.5 },
     { name: 'Restaurant 3', distance: 2.0 },
   ]);
+
+  const { setUser } = useContext(userContext)
 
   const handleRestaurantClick = (name) => {
     alert(`You clicked on ${name}`);
@@ -42,7 +47,7 @@ const Home = () => {
       <Link to="/BuddiesPage">BuddyList </Link>
       {/* <Link to="/user-settings">User Settings</Link> */}
       <Link to="/BeerGarden">BeerGarden </Link>
-      
+      <Button onClick={(e) => [e.preventDefault(), signOut(setUser)]}>Sign Out</Button>
     </div>
   );
 };
