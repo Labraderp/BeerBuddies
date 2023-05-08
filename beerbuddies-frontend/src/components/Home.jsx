@@ -45,7 +45,7 @@ const Home = () => {
       </div>
     
       <Link to="/BuddiesPage">BuddyList </Link>
-      {/* <Link to="/user-settings">User Settings</Link> */}
+      <Link to="/UserProfilePage">ProfilePage  </Link>
       <Link to="/BeerGarden">BeerGarden </Link>
       <Button onClick={(e) => [e.preventDefault(), signOut(setUser)]}>Sign Out</Button>
     </div>
