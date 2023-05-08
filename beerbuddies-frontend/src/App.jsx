@@ -7,26 +7,29 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { currUser, signOut } from './utilities';
+import { getCookie } from './utilities'
+import Axios from 'axios';
 
 export const userContext = createContext(null);
 
-function App() {
+const csrftoken = getCookie();
+Axios.defaults.headers.common['X-CSRFToken'] = csrftoken
 
+function App() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
     const getCurrUser = async () => {
-      await currUser()
-      console.log(user)
+      setUser(await currUser());
     }
-
-    getCurrUser();
+    getCurrUser()
   }, [])
 
+  
   return (
     <div className="App">
       <userContext.Provider value={{user, setUser}}>
-        <Container>
+        <Container >
           {(user == null) ?
           <div>
           <Row>
