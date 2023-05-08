@@ -22,8 +22,11 @@ export const signIn = async(handle, password, setUser) => {
         'handle':handle,
         'password':password
     });
-    console.log(response)
-    setUser(handle)
+    console.log(response.data.success)
+
+    if(response.data.success) {
+        setUser(handle)
+    }
 
     return response;
 }
@@ -37,6 +40,5 @@ export const signUp = async(email, handle, password) => {
         'handle':handle,
         'password':password
     });
-
-    console.log(response);
+    console.log(response);    
 }
