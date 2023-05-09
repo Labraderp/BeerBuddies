@@ -49,6 +49,7 @@ import RestaurantPage from "./pages/RestaurantPage";
 import BeerList from "./pages/BeerList"
 import BeerPage from "./pages/BeerPage";
 import RestaurantList from "./pages/RestaurantList";
+import QRpage from "./pages/QRpage";
 
 const router = (
   <Router>
@@ -62,6 +63,7 @@ const router = (
       <Route path="/RestaurantPage/BeerList" element={<BeerList/>}/>
       <Route path="/BeerPage" element={<BeerPage/>}/>
       <Route path="/RestaurantList" element={<RestaurantList/>}/>
+      <Route path="/RedeemQR" element={<QRpage/>}/>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   </Router>

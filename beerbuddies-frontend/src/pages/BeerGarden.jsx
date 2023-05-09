@@ -12,6 +12,40 @@ const BeerGarden = () => {
             .then((data) => setBeers(data.beers));
     }, []);
 
+
+// hardcoded beers until we build backend call to postgres
+    const hardBeers = [
+    {
+        id:100,
+        name: "Light IPA",
+        abv: "4.5% ABV",
+        description: "A light beer with strong flavor"
+    },
+    {
+        id:102,
+        name: "Strong Stout",
+        abv: "8% ABV",
+        description: "A heavy stout with peanut butter notes"
+    },
+    {
+        id:103,
+        name: "Golden Lager",
+        abv: "5% ABV",
+        description: "Sweet golden nectar"
+    },
+    {
+        id:104,
+        name: "Domestic",
+        abv: "3.5% ABV",
+        description: "America"
+    },
+    {
+        id:105,
+        name: "Imported",
+        abv: "4% ABV",
+        description: "German, Belgian, Mexican, etc"
+    }
+]
     
 
     //~~~~~~~~~~~~~~~~~~~possible model for beers~~~~~~~~~~~~~~~~
@@ -45,12 +79,13 @@ const BeerGarden = () => {
         <div>
             <h1>Beer Garden - Purchased Beers</h1>
             <ul>
-                {beers.map((beer, index) => (
+                {hardBeers.map((beer, index) => (
                     <li key={index}>
                         <h2>{beer.name}</h2>
                         <img src={beer.img_url} alt={beer.name} />
                         <p>Rating: {beer.rating}</p>
                         <p>Details: {beer.details}</p>
+                        <button>Redeem Beer</button>
                     </li>
                 ))}
             </ul>
