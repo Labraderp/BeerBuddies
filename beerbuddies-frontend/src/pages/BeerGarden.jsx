@@ -7,11 +7,11 @@ const BeerGarden = () => {
 
 
     //need model and path to test this part out
-    useEffect(() => {
-        fetch('/api/purchased_beers/')
-            .then((response) => response.json())
-            .then((data) => setBeers(data.beers));
-    }, []);
+    // useEffect(() => {
+    //     fetch('/api/purchased_beers/')
+    //         .then((response) => response.json())
+    //         .then((data) => setBeers(data.beers));
+    // }, []);
 
 
 // hardcoded beers until we build backend call to postgres
