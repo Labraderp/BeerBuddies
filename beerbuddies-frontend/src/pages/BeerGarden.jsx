@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 //store and update beers
 const BeerGarden = () => {
@@ -78,17 +79,18 @@ const BeerGarden = () => {
     return (
         <div>
             <h1>Beer Garden - Purchased Beers</h1>
-            <ul>
+            <div>
+                {/* these are hardcoded beers */}
                 {hardBeers.map((beer, index) => (
-                    <li key={index}>
+                    <div key={index}>
                         <h2>{beer.name}</h2>
                         <img src={beer.img_url} alt={beer.name} />
                         <p>Rating: {beer.rating}</p>
                         <p>Details: {beer.details}</p>
-                        <button>Redeem Beer</button>
-                    </li>
+                        <button><Link to='/RedeemQR'>Redeem Beer</Link></button>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
