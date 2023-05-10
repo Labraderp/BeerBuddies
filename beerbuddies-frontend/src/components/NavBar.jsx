@@ -6,29 +6,53 @@ import { userContext } from '../App';
 import { signOut } from '../utilities';
 import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom'
-export default function NavBar() {
+
+export default function NavBar({setFeatures}) {
 
     const { user, setUser } = useContext(userContext)
+
+    const clickHandler = (e) => {
+        e.preventDefault();
+        console.log(e.target.textContent)
+        
+        switch(e.target.textContent){
+            case "Restaurants":
+                setFeatures(1)
+                break
+            case "Buddy List":
+                setFeatures(2)
+                break
+            case "User Profile":
+                setFeatures(3)
+                break
+            case "Beer Garden":
+                setFeatures(4)
+                break
+        }
+
+
+    }
+
 
     return(
         <Navbar bg="dark" variant='dark' fixed="top">
             <Container>
                 <Navbar.Brand href="/">BeerBuddies</Navbar.Brand>
             </Container>
-                <Container>
-                    <Link to="/RestaurantList">Restaurants</Link>
+                <Container onClick={clickHandler}>
+                    <Link to="#">Restaurants</Link>
                 </Container>
 
-                <Container>
-                    <Link to="/BuddiesPage">Buddies</Link>
+                <Container onClick={clickHandler}>
+                    <Link to="#">Buddy List</Link>
                 </Container>
 
-                <Container>
-                    <Link to="/UserProfilePage">Profile</Link>
+                <Container onClick={clickHandler}>
+                    <Link to="#">User Profile</Link>
                 </Container>
 
-                <Container>
-                    <Link to="/BeerGarden">Beer Garden</Link>
+                <Container onClick={clickHandler}>
+                    <Link to="#">Beer Garden</Link>
                 </Container>
 
             <Container className="justify-content-end">

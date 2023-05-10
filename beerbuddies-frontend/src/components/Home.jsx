@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import { signOut } from '../utilities';
 import { userContext } from '../App';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import BuddyList from '../pages/BuddyList';
+import UserProfilePage from '../pages/UserProfilePage';
+import BeerGarden from '../pages/BeerGarden'
+
 import NavBar from './NavBar';
 
 const RestaurantListing = ({ name, distance, onClick }) => (
@@ -28,6 +27,7 @@ const Home = () => {
   ]);
 
   const { user, setUser } = useContext(userContext)
+  const [features, setFeatures] = useState(0)
 
   const handleRestaurantClick = (name) => {
     alert(`You clicked on ${name}`);
@@ -36,23 +36,26 @@ const Home = () => {
 
   return (
     <Container>
-      <NavBar />
+      <NavBar setFeatures={setFeatures}/>
     <div className="home">
       <h1>Homepage</h1>
-      <div className="restaurant-list">
-        {restaurants.map((restaurant, index) => (
-          <RestaurantListing
-            key={index}
-            name={restaurant.name}
-            distance={restaurant.distance}
-            onClick={() => handleRestaurantClick(restaurant.name)}
-          />
-        ))}
-      </div>
-      <Link to="/RestaurantList"> RestaurantList| </Link>
-      <Link to="/BuddyList"> BuddyList| </Link>
-      <Link to="/UserProfilePage"> ProfilePage|  </Link>
-      <Link to="/BeerGarden"> BeerGarden </Link>
+    </div>
+    <div>
+      {(features == 1) ? 
+            <div className="restaurant-list">
+            {restaurants.map((restaurant, index) => (
+              <RestaurantListing
+                key={index}
+                name={restaurant.name}
+                distance={restaurant.distance}
+                onClick={() => handleRestaurantClick(restaurant.name)}
+              />
+            ))}
+          </div>
+      : <div />}
+      {(features == 2) ? <BuddyList /> : <div />}
+      {(features == 3) ? <UserProfilePage /> : <div />}
+      {(features == 4) ? <BeerGarden /> : <div />}
     </div>
     </Container>
   );
