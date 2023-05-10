@@ -4,8 +4,8 @@ axios.defaults.xsrfCookieName = "csrftoken";
 
 export const currUser = async () => {
     let response = await axios.get('/curruser/');
-    console.log(response)
-    return response.data.curr_user
+    console.log(response.data)
+    return response.data.curr_user.fields.handle
 }
 
 export const signOut = async (setUser)  => {
