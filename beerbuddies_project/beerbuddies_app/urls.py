@@ -6,5 +6,6 @@ urlpatterns = [
     path('signup/', views.user_sign_up, name='signup'),
     path('signin/', views.user_sign_in, name='signin'),
     path('curruser/', views.curr_user, name='curruser'),
-    path('signout/', views.user_sign_out, name='signout')
+    path('signout/', views.user_sign_out, name='signout'),
+    # path('QRcode/', views.getQRcode, name='getQRcode' ) <-- calls api from backend
 ]

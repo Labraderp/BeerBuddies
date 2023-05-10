@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import *
 from django.core.serializers import serialize
 import json
+# import requests
 
 # JSON Response format
 # success: True or success: False for checking CRUD actions
@@ -86,3 +87,13 @@ def user_sign_out(request):
     except Exception as e:
         print(e)
         return JsonResponse({"success": False, "reason":e})
+
+
+# uncomment this code to call the api from the backend
+
+# @api_view(["GET"])
+# def getQRcode(request):
+#     endpoint = f"http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100"
+#     response = requests.get(endpoint)
+#     print(response)
+#     return HttpResponse(response)
