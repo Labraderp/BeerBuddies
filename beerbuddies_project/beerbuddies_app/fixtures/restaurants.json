@@ -1,0 +1,47 @@
+[
+    {
+        "model": "beerbuddies_app.restaurant", 
+        "pk": 1, 
+        "fields": 
+        {
+            "name": "Applebee's", 
+            "distance": "5.00"
+        }
+    }, 
+    {
+        "model": "beerbuddies_app.restaurant", 
+        "pk": 2, 
+        "fields": 
+        {
+            "name": "Dupree's Pub", 
+            "distance": "6.25"
+        }
+    },
+    {
+        "model": "beerbuddies_app.restaurant", 
+        "pk": 3, 
+        "fields": 
+        {
+            "name": "McCallen Irish Drinkery", 
+            "distance": "0.45"
+        }
+    },
+    {
+        "model": "beerbuddies_app.restaurant", 
+        "pk": 4, 
+        "fields": 
+        {
+            "name": "Rupert's Fine Dining", 
+            "distance": "1.20"
+        }
+    },
+    {
+        "model": "beerbuddies_app.restaurant", 
+        "pk": 5, 
+        "fields": 
+        {
+            "name": "Tango Tavern", 
+            "distance": "3.28"
+        }
+    }
+]

@@ -1,0 +1,54 @@
+
+
+[
+    {
+        "model": "beerbuddies_app.beer", 
+        "pk": 101, 
+        "fields": 
+        {
+            "name": "Light IPA", 
+            "abv": "4.5", 
+            "description": "A light beer with strong flavor"
+        }
+    }, 
+    {
+        "model": "beerbuddies_app.beer", 
+        "pk": 102, 
+        "fields": 
+        {
+            "name": "Strong Stout", 
+            "abv": "8.0", 
+            "description": "A heavy stout with peanut butter notes"
+        }
+    }, 
+    {
+        "model": "beerbuddies_app.beer", 
+        "pk": 103, 
+        "fields": 
+        {
+            "name": "Golden Lager", 
+            "abv": "5.0", 
+            "description": "Sweet golden nectar"
+        }
+    },
+    {
+        "model": "beerbuddies_app.beer", 
+        "pk": 104, 
+        "fields": 
+        {
+            "name": "Domestic", 
+            "abv": "3.5", 
+            "description": "America"
+        }
+    },
+    {
+        "model": "beerbuddies_app.beer", 
+        "pk": 105, 
+        "fields": 
+        {
+            "name": "Imported", 
+            "abv": "4.0", 
+            "description": "German, Belgian, Mexican, etc"
+        }
+    }
+]

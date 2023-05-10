@@ -24,6 +24,13 @@ class Beer(models.Model):
 
     def __str__(self):
         return f"{self.name} | {self.abv} |{self.description}"
+    
+class Restaurant(models.Model):
+    name = models.CharField(max_length=255)
+    distance = models.DecimalField(max_digits=4, decimal_places=2)
+
+    def __str__(self) -> str:
+        return f"{self.name} | {self.distance}"
 
 
 # class Beer_Garden(models.Model):
