@@ -3,19 +3,25 @@ import { Container, Row, Col, InputGroup, FormControl, Button, ListGroup } from 
 import { Link } from 'react-router-dom';
 
 export default function BuddyList() {
-  const [friends, setFriends] = React.useState([
-    { id: 1, name: 'Josh' },
-    { id: 2, name: 'Mary' },
-    { id: 3, name: 'Tom' },
-  ]);
+  const [friends, setFriends] = React.useState(() => {
+    const storedFriends = localStorage.getItem('friends');
+    return storedFriends ? JSON.parse(storedFriends) : [
+      { id: 1, name: 'Josh' },
+      { id: 2, name: 'Mary' },
+      { id: 3, name: 'Tom' },
+    ];
+  });
 
-  const [allUsers, setAllUsers] = React.useState([
-    { id: 4, name: 'Jose' },
-    { id: 5, name: 'Will' },
-    { id: 6, name: 'Nick' },
-    { id: 7, name: 'Drew' },
-    { id: 8, name: 'Johnny' },
-  ]);
+  const [allUsers, setAllUsers] = React.useState(() => {
+    const storedAllUsers = localStorage.getItem('allUsers');
+    return storedAllUsers ? JSON.parse(storedAllUsers) : [
+      { id: 4, name: 'Jose' },
+      { id: 5, name: 'Will' },
+      { id: 6, name: 'Nick' },
+      { id: 7, name: 'Drew' },
+      { id: 8, name: 'Johnny' },
+    ];
+  });
 
   const [searchQuery, setSearchQuery] = React.useState('');
   const [searchResults, setSearchResults] = React.useState([]);
@@ -36,6 +42,11 @@ export default function BuddyList() {
     setSearchQuery(query);
     setSearchResults(allUsers.filter(user => user.name.toLowerCase().includes(query)));
   }
+
+  React.useEffect(() => {
+    localStorage.setItem('friends', JSON.stringify(friends));
+    localStorage.setItem('allUsers', JSON.stringify(allUsers));
+  }, [friends, allUsers]);
 
   return (
     <Container>
