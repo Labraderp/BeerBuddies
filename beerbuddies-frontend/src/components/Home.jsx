@@ -50,7 +50,7 @@ const Home = () => {
         ))}
       </div>
       <Link to="/RestaurantList"> RestaurantList| </Link>
-      <Link to="/BuddiesPage"> BuddyList| </Link>
+      <Link to="/BuddyList"> BuddyList| </Link>
       <Link to="/UserProfilePage"> ProfilePage|  </Link>
       <Link to="/BeerGarden"> BeerGarden </Link>
     </div>

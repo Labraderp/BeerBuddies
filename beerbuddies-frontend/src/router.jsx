@@ -50,6 +50,7 @@ import BeerList from "./pages/BeerList"
 import BeerPage from "./pages/BeerPage";
 import RestaurantList from "./pages/RestaurantList";
 import QRpage from "./pages/QRpage";
+import BuddyList from "./pages/BuddyList";
 
 const router = (
   <Router>
@@ -57,6 +58,7 @@ const router = (
       <Route path="/" element={<App />} />
       <Route path="/login" element={<Home />} />
       <Route path="/BuddiesPage" element={<BuddiesPage />} />
+      <Route path="/BuddyList" element={<BuddyList />} />
       <Route path="/BeerGarden" element={<BeerGarden />} />
       <Route path="/UserProfilePage" element={<UserProfilePage />} />
       <Route path="/RestaurantPage" element={<RestaurantPage/>} />
