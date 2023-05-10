@@ -65,7 +65,7 @@ const router = (
       <Route path="/RestaurantPage/BeerList" element={<BeerList/>}/>
       <Route path="/BeerPage" element={<BeerPage/>}/>
       <Route path="/RestaurantList" element={<RestaurantList/>}/>
-      <Route path="/RedeemQR" element={<QRpage/>}/>
+      <Route path="/RedeemQR/:id" element={<QRpage/>}/>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   </Router>

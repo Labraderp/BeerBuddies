@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
-import creed from '../images/creed.jpeg'
 
 
-export default function QRcode() {
-    const url = `https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100`;
+export default function QRcode({beerid}) {
+    const url = `https://api.qrserver.com/v1/create-qr-code/?data=${beerid}&amp;size=100x100`;
 
-  
     return (
       <div className="QR_container">
         <h1>My QR code:</h1>

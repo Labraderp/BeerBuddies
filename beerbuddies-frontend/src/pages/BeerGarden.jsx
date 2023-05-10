@@ -69,12 +69,13 @@ const BeerGarden = () => {
     //     return JsonResponse({'beers': beer_list})
 
 
-
     //~~~~~~~~~~~~~possible urlpattern~~~~~~~~~~~~~~~~~~~~
     // path('api/purchased_beers/', views.get_purchased_beers, name='purchased_beers')
 
-
-
+    function createurl(beerid, beername) {
+        console.log(beerid)
+        return `/RedeemQR/${beerid}${beername}`
+    }
 
     return (
         <div>
@@ -87,7 +88,7 @@ const BeerGarden = () => {
                         <img src={beer.img_url} alt={beer.name} />
                         <p>Rating: {beer.rating}</p>
                         <p>Details: {beer.details}</p>
-                        <button><Link to='/RedeemQR'>Redeem Beer</Link></button>
+                        <button><Link to={createurl(beer.id,beer.name)}>Redeem Beer</Link></button>
                     </div>
                 ))}
             </div>
