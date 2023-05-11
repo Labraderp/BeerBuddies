@@ -16,6 +16,9 @@ export default function NavBar({setFeatures}) {
         console.log(e.target.textContent)
         
         switch(e.target.textContent){
+            case "BeerBuddies":
+                setFeatures(0)
+                break
             case "Restaurants":
                 setFeatures(1)
                 break
@@ -37,7 +40,7 @@ export default function NavBar({setFeatures}) {
     return(
         <Navbar bg="dark" variant='dark' fixed="top">
             <Container>
-                <Navbar.Brand href="/">BeerBuddies</Navbar.Brand>
+                <Navbar.Brand href="#" onClick={clickHandler}>BeerBuddies</Navbar.Brand>
             </Container>
                 <Container onClick={clickHandler}>
                     <Link to="#">Restaurants</Link>
