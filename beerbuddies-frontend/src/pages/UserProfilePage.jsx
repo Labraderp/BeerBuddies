@@ -7,13 +7,17 @@ import { userContext } from '../App';
 
 export default function UserProfilePage({}) {
 
+    console.log(userContext, 'my context')
+    const user_info = useContext(userContext)
+    console.log(user_info.user)
+
     return(
         <div>
             <Container>
                 <Row>
                     <Col>
                         <Row><img src={creedpic} /></Row>
-                        <Row>@</Row> {/* Display the user's handle */}
+                        <Row>{user_info.user}</Row>
                         <Row>City, State</Row>
                         <Row>Beer Preferences</Row>
                     </Col>
