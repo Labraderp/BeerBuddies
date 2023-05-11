@@ -4,21 +4,20 @@ import { userContext } from '../App';
 import Container from 'react-bootstrap/Container';
 import BuddyList from '../pages/BuddyList';
 import UserProfilePage from '../pages/UserProfilePage';
-import BeerGarden from '../pages/BeerGarden'
-
+import BeerGarden from '../pages/BeerGarden';
+import RestaurantPage from '../pages/RestaurantPage';
+import BeerList from '../pages/BeerList';
+import BeerPage from '../pages/BeerPage';
+import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 
 const RestaurantListing = ({ name, distance, onClick }) => (
-  <div className="restaurant-listing">
-  {/* Replace href with actual links */}
-    <a href="https://example.com" target="_blank" onClick={onClick}>
-      <h3>{name}</h3>
-      <p>{distance} miles away</p>
-    </a>
+  <div className="restaurant-listing" onClick={onClick}>
+    <h3>{name}</h3>
+    <p>{distance} miles away</p>
   </div>
 );
 
-// Fake restaurants/distance
 const Home = () => {
   const [restaurants, setRestaurants] = useState([
     { name: 'Restaurant 1', distance: 1.5 },
@@ -26,37 +25,51 @@ const Home = () => {
     { name: 'Restaurant 3', distance: 2.0 },
   ]);
 
-  const { user, setUser } = useContext(userContext)
-  const [features, setFeatures] = useState(0)
+  const { user, setUser } = useContext(userContext);
+  const [features, setFeatures] = useState(0);
+  const [selectedBeer, setSelectedBeer] = useState(null);
 
   const handleRestaurantClick = (name) => {
     alert(`You clicked on ${name}`);
+    setFeatures(5);
   };
 
+  const handleBeerClick = (beer) => {
+    setSelectedBeer(beer);
+    setFeatures(6);
+  };
 
   return (
     <Container>
-      <NavBar setFeatures={setFeatures}/>
-    <div className="home">
-      <h1>Homepage</h1>
-    </div>
-    <div>
-      {(features == 1) ? 
-            <div className="restaurant-list">
+      <NavBar setFeatures={setFeatures} />
+      <div className="home">
+        <h1>Homepage</h1>
+      </div>
+      <div>
+        {features === 1 && (
+          <div className="restaurant-list">
             {restaurants.map((restaurant, index) => (
-              <RestaurantListing
-                key={index}
-                name={restaurant.name}
-                distance={restaurant.distance}
-                onClick={() => handleRestaurantClick(restaurant.name)}
-              />
+              <Link to="#" key={index}>
+                <RestaurantListing
+                  name={restaurant.name}
+                  distance={restaurant.distance}
+                  onClick={() => handleRestaurantClick(restaurant.name)}
+                />
+              </Link>
             ))}
           </div>
-      : <div />}
-      {(features == 2) ? <BuddyList /> : <div />}
-      {(features == 3) ? <UserProfilePage /> : <div />}
-      {(features == 4) ? <BeerGarden /> : <div />}
-    </div>
+        )}
+        {features === 2 ? <BuddyList /> : null}
+        {features === 3 ? <UserProfilePage /> : null}
+        {features === 4 ? <BeerGarden /> : null}
+        {features === 5 ? <RestaurantPage /> : null}
+        {features === 6 && selectedBeer && (
+          <div>
+            <BeerList handleBeerClick={handleBeerClick} />
+            <BeerPage />
+          </div>
+        )}
+      </div>
     </Container>
   );
 };
