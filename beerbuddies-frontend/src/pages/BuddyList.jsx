@@ -27,8 +27,11 @@ export default function BuddyList() {
   const [searchResults, setSearchResults] = React.useState([]);
 
   function removeFriend(id) {
-    setFriends(friends.filter((friend) => friend.id !== id));
-  }
+  const friendToRemove = friends.find((friend) => friend.id === id);
+  setFriends(friends.filter((friend) => friend.id !== id));
+  setAllUsers([...allUsers, friendToRemove]);
+}
+
 
   function addFriend(id) {
     const friendToAdd = allUsers.find(user => user.id === id);
