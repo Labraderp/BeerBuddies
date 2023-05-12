@@ -35,11 +35,6 @@ export default function BeerList({ handleBeerClick }) {
     }
   ];
 
-  const handleItemClick = (id) => {
-    const selectedBeer = beers.find((beer) => beer.id === id);
-    handleBeerClick(selectedBeer);
-  };
-
   return (
     <ListGroup defaultActiveKey="#">
       <h3>Take a look at our beer menu:</h3>
@@ -47,7 +42,7 @@ export default function BeerList({ handleBeerClick }) {
         <ListGroup.Item
           key={beer.id}
           action
-          onClick={() => handleItemClick(beer.id)}
+          onClick={handleBeerClick}
         >
           {beer.name} -- {beer.abv}
         </ListGroup.Item>

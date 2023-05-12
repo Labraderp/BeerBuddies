@@ -27,16 +27,15 @@ const Home = () => {
 
   const { user, setUser } = useContext(userContext);
   const [features, setFeatures] = useState(0);
-  const [selectedBeer, setSelectedBeer] = useState(null);
+  const [showBeerPage, setShowBeerPage] = useState(false);
 
   const handleRestaurantClick = (name) => {
     alert(`You clicked on ${name}`);
     setFeatures(5);
   };
 
-  const handleBeerClick = (beer) => {
-    setSelectedBeer(beer);
-    setFeatures(6);
+  const handleBeerClick = () => {
+    setShowBeerPage(true);
   };
 
   return (
@@ -62,13 +61,8 @@ const Home = () => {
         {features === 2 ? <BuddyList /> : null}
         {features === 3 ? <UserProfilePage /> : null}
         {features === 4 ? <BeerGarden /> : null}
-        {features === 5 ? <RestaurantPage /> : null}
-        {features === 6 && selectedBeer && (
-          <div>
-            <BeerList handleBeerClick={handleBeerClick} />
-            <BeerPage />
-          </div>
-        )}
+        {features === 5 ? <RestaurantPage handleBeerClick={handleBeerClick} /> : null}
+        {showBeerPage && <BeerPage />}
       </div>
     </Container>
   );

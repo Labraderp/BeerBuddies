@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import BeerList from "../pages/BeerList";
+import BeerPage from "../pages/BeerPage";
 
-export default function RestaurantPage() {
+export default function RestaurantPage({ handleBeerClick }) {
   const [showBeerList, setShowBeerList] = useState(false);
+  const [showBeerPage, setShowBeerPage] = useState(false);
+
+  const handleBeerListClick = () => {
+    handleBeerClick();
+  };
 
   return (
     <div className="RestaurantPage">
@@ -32,7 +38,7 @@ export default function RestaurantPage() {
           <button onClick={() => setShowBeerList(!showBeerList)}>Beer List</button>
         </div>
       </div>
-      {showBeerList && <BeerList />}
+      {showBeerList && <BeerList handleBeerClick={handleBeerListClick} />}
     </div>
   );
 }
