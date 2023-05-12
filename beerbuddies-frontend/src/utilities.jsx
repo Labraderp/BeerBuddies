@@ -5,7 +5,9 @@ axios.defaults.xsrfCookieName = "csrftoken";
 export const currUser = async () => {
     let response = await axios.get('/curruser/');
     console.log(response.data)
-    return response.data.curr_user.fields.handle
+    // return response.data.curr_user.fields.handle
+    return response.data.curr_user.fields
+
 }
 
 export const signOut = async (setUser)  => {
@@ -60,3 +62,34 @@ export const getCookie = () => {
     return cookieValue;
   }
   
+  export const incrementToken = async (userHandle) => {
+    try {
+        const response = await axios.post('increment_token/', { 
+            "user_handle" : userHandle 
+        });
+        if (response.status === 200) {
+          return true; // Token amount incremented successfully
+        } else {
+          return false; // Error occurred while incrementing token amount
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+        return false; // Error occurred while making the API call
+      }
+  }
+
+  export const decrementToken = async (userHandle) => {
+    try {
+        const response = await axios.post('decrement_token/', { 
+            "user_handle" : userHandle 
+        });
+        if (response.status === 200) {
+          return true; // Token amount decremented successfully
+        } else {
+          return false; // Error occurred while decrementing token amount
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+        return false; // Error occurred while making the API call
+      }
+  }

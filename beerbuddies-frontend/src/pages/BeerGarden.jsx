@@ -1,10 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { userContext } from '../App';
+import { decrementToken } from '../utilities';
+
 
 //store and update beers
 const BeerGarden = () => {
     const [beers, setBeers] = useState([]);
+    const user_info = useContext(userContext)
+    const navigate = useNavigate();
 
+    const handleDecrementToken = async (beerId, beerName) => {
+        try {
+          const result = await decrementToken(user_info.user.handle);
+          if (result) {
+            const updatedUserContext = {
+              ...user_info.user,
+              token_amount: user_info.user.token_amount - 1,
+            };
+            user_info.setUser(updatedUserContext);
+            navigate(createurl(beerId, beerName));
+
+          } else {
+            console.error('Failed to decrement token amount.');
+          }
+        } catch (error) {
+          console.error('Error:', error.message);
+        }
+      };
 
     //need model and path to test this part out
     // useEffect(() => {
@@ -80,6 +103,7 @@ const BeerGarden = () => {
     return (
         <div>
             <h1>Beer Garden - Purchased Beers</h1>
+            <h2 style={{fontStyle: 'italic', color: 'green'}}>Available Tokens: {user_info.user.token_amount}</h2>
             <div>
                 {/* these are hardcoded beers */}
                 {hardBeers.map((beer, index) => (
@@ -88,7 +112,9 @@ const BeerGarden = () => {
                         <img src={beer.img_url} alt={beer.name} />
                         <p>Rating: {beer.rating}</p>
                         <p>Details: {beer.details}</p>
-                        <button><Link to={createurl(beer.id,beer.name)}>Redeem Beer</Link></button>
+                        <button onClick={() => handleDecrementToken(beer.id, beer.name)}>
+                            Redeem Beer
+                        </button>
                     </div>
                 ))}
             </div>

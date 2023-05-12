@@ -60,7 +60,7 @@ export default function NavBar({setFeatures}) {
 
             <Container className="justify-content-end">
                 <Navbar.Text className="justify-content-end p-2">
-                    Signed in: {user}
+                    Signed in: {user.handle}
                 </Navbar.Text>
                 <Button variant="danger" onClick={(e) => [e.preventDefault(), signOut(setUser)]}>Sign Out</Button>
             </Container>
