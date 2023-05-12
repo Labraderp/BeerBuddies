@@ -72,7 +72,7 @@ def curr_user(request):
     if request.user.is_authenticated:
         print(request.user)
         user_info = serialize(
-            "json", [request.user], fields=['handle', 'email'])
+            "json", [request.user], fields=['handle', 'email', "token_amount"])
         user_info_workable = json.loads(user_info)
         return JsonResponse({"curr_user": user_info_workable[0]})
     else:
@@ -87,7 +87,35 @@ def user_sign_out(request):
     except Exception as e:
         print(e)
         return JsonResponse({"success": False, "reason":e})
-
+    
+@api_view(["POST"])
+def increment_token(request):
+    try: 
+        user_handle = request.data['user_handle']
+        user = App_User.objects.get(handle=user_handle)
+        # print("User:", user)
+        
+        user.token_amount += 1
+        user.save()
+        
+        return JsonResponse({"success" : True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False, "reason":e})
+    
+@api_view(["POST"])
+def decrement_token(request):
+    try: 
+        user_handle = request.data['user_handle']
+        user = App_User.objects.get(handle=user_handle)
+        
+        user.token_amount -= 1
+        user.save()
+        
+        return JsonResponse({"success" : True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False, "reason":e})
 
 # uncomment this code to call the api from the backend
 
