@@ -38,9 +38,14 @@ const Home = () => {
     setShowBeerPage(true);
   };
 
+  const handleFeatureClick = (featureNumber) => {
+    setFeatures(featureNumber);
+    setShowBeerPage(false);
+  };
+
   return (
     <Container>
-      <NavBar setFeatures={setFeatures} />
+      <NavBar setFeatures={handleFeatureClick} />
       <div className="home">
         <h1>Homepage</h1>
       </div>
