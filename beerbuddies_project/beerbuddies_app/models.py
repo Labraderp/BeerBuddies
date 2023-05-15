@@ -15,15 +15,6 @@ class App_User(AbstractUser):
 
     def __str__(self):
         return f"{self.handle} | {self.email}"
-
-
-class Beer(models.Model):
-    name = models.CharField(max_length=255)
-    abv = models.DecimalField(max_digits=4, decimal_places=1)
-    description = models.TextField(max_length=1000)
-
-    def __str__(self):
-        return f"{self.name} | {self.abv} |{self.description}"
     
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
@@ -31,15 +22,20 @@ class Restaurant(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name} | {self.distance}"
+    
+class PurchasedBeer(models.Model):
+    user = models.ForeignKey(App_User, on_delete=models.CASCADE, default=1)
+    name = models.CharField(max_length=255)
+    abv = models.DecimalField(max_digits=4, decimal_places=1)
+    description = models.TextField(max_length=1000)
 
+    def __str__(self):
+        return f"{self.name} bought by {self.user}"
+    
+class Beer(models.Model):
+    name = models.CharField(max_length=255)
+    abv = models.DecimalField(max_digits=4, decimal_places=1)
+    description = models.TextField(max_length=1000)
 
-# class Beer_Garden(models.Model):
-#     user = models.ForeignKey(
-#         App_User, on_delete=models.CASCADE, related_name='user')
-#     # beers = models.ManyToManyField(Beer, related_name="beer_gardens")
-
-#     def __str__(self):
-#         return f"{self.user.handle}'s beer garden'"
-
-#     # def __str__(self):
-#     #     return f"{self.beer} ({self.user.handle})"
+    def __str__(self):
+        return f"{self.name} | {self.abv} |{self.description}"
