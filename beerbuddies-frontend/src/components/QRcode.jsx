@@ -1,14 +1,17 @@
 import React from "react";
 import CryptoJS from 'crypto-js';
+import { userContext } from "../App";
+import { useContext } from "react";
 
 export default function QRcode({beerid}) {
-
+    const context = useContext(userContext)
+    console.log(context, 'my_context')
+    
     const info = beerid;
     console.log(info)
     const salt = 'ginger_bread_man'
     const saltedInfo = salt + info;
     const hash = CryptoJS.SHA256(saltedInfo).toString();
-    
     
     const endpoint = `https://api.qrserver.com/v1/create-qr-code/?data=${hash}&amp;size=100x100`;
 

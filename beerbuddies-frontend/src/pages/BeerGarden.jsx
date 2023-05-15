@@ -10,7 +10,7 @@ const BeerGarden = () => {
     const user_info = useContext(userContext)
     const navigate = useNavigate();
 
-    const handleDecrementToken = async (beerId, beerName) => {
+    const handleDecrementToken = async (beerId, beerName, userHandle ) => {
         try {
           const result = await decrementToken(user_info.user.handle);
           if (result) {
@@ -19,7 +19,7 @@ const BeerGarden = () => {
               token_amount: user_info.user.token_amount - 1,
             };
             user_info.setUser(updatedUserContext);
-            navigate(createurl(beerId, beerName));
+            navigate(createurl(beerId, beerName, userHandle));
 
           } else {
             console.error('Failed to decrement token amount.');
@@ -95,9 +95,9 @@ const BeerGarden = () => {
     //~~~~~~~~~~~~~possible urlpattern~~~~~~~~~~~~~~~~~~~~
     // path('api/purchased_beers/', views.get_purchased_beers, name='purchased_beers')
 
-    function createurl(beerid, beername) {
+    function createurl(beerid, beername, userhandle) {
         console.log(beerid)
-        return `/RedeemQR/${beerid}${beername}`
+        return `/RedeemQR/${beerid}${beername}${userhandle}`
     }
 
     return (
@@ -112,7 +112,7 @@ const BeerGarden = () => {
                         <img src={beer.img_url} alt={beer.name} />
                         <p>Rating: {beer.rating}</p>
                         <p>Details: {beer.details}</p>
-                        <button onClick={() => handleDecrementToken(beer.id, beer.name)}>
+                        <button onClick={() => handleDecrementToken(beer.id, beer.name, user_info.user.handle)}>
                             Redeem Beer
                         </button>
                     </div>
