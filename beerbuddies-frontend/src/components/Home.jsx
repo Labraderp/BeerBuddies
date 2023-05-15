@@ -30,7 +30,7 @@ const Home = () => {
   const [showBeerPage, setShowBeerPage] = useState(false);
 
   const handleRestaurantClick = (name) => {
-    alert(`You clicked on ${name}`);
+    // alert(`You clicked on ${name}`);
     setFeatures(5);
   };
 
