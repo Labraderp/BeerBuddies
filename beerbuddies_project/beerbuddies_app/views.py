@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.http import HttpRequest
 from django.core.serializers import serialize
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -19,6 +20,7 @@ def index(request):
     theIndex = open('static/index.html').read()
     response = HttpResponse(theIndex)
     return HttpResponse(response)
+
 
 @api_view(["POST"])
 def user_sign_up(request):
@@ -41,7 +43,7 @@ def user_sign_up(request):
         new_user = App_User.objects.create_user(
             username=handle, handle=handle, email=email, password=password)
         new_user.save()
-        return JsonResponse({"success": True, "note":f"{handle} has been created"})
+        return JsonResponse({"success": True, "note": f"{handle} has been created"})
     except Exception as e:
         print(e)
         return JsonResponse({"success": False, "reason": "already signed up"})
@@ -59,12 +61,12 @@ def user_sign_in(request):
         try:
             login(request._request, user)
             print('logged in')
-            return JsonResponse({"success": True, "note":f"{handle} has logged in"})
+            return JsonResponse({"success": True, "note": f"{handle} has logged in"})
         except Exception as e:
             print(e)
             return JsonResponse({"success": False, "reason": e})
     print('other')
-    return JsonResponse({"success": False, "reason":"user null/inactive error"})
+    return JsonResponse({"success": False, "reason": "user null/inactive error"})
 
 
 @api_view(["GET"])
@@ -83,39 +85,57 @@ def curr_user(request):
 def user_sign_out(request):
     try:
         logout(request)
-        return JsonResponse({"success": True, "note":"user has logged out"})
+        return JsonResponse({"success": True, "note": "user has logged out"})
     except Exception as e:
         print(e)
-        return JsonResponse({"success": False, "reason":e})
-    
+        return JsonResponse({"success": False, "reason": e})
+
+
 @api_view(["POST"])
 def increment_token(request):
-    try: 
+    try:
         user_handle = request.data['user_handle']
         user = App_User.objects.get(handle=user_handle)
         # print("User:", user)
-        
+
         user.token_amount += 1
         user.save()
-        
-        return JsonResponse({"success" : True})
+
+        return JsonResponse({"success": True})
     except Exception as e:
         print(e)
-        return JsonResponse({"success": False, "reason":e})
-    
+        return JsonResponse({"success": False, "reason": e})
+
+
 @api_view(["POST"])
 def decrement_token(request):
-    try: 
+    try:
         user_handle = request.data['user_handle']
         user = App_User.objects.get(handle=user_handle)
-        
+
         user.token_amount -= 1
         user.save()
-        
-        return JsonResponse({"success" : True})
+
+        return JsonResponse({"success": True})
     except Exception as e:
         print(e)
-        return JsonResponse({"success": False, "reason":e})
+        return JsonResponse({"success": False, "reason": e})
+
+
+def index(request: HttpRequest) -> HttpResponse:
+    restaurants = Restaurant.objects.all()
+    for restaurant in restaurants:
+        rating = Rating.objects.filter(
+            restaurant=restaurant, user=request.user).first()
+        restaurant.user_rating = rating.rating if rating else 0
+    return render(request, "index.html", {"restaurants": restaurants})
+
+
+def rate(request: HttpRequest, restaurant_id: int, rating: int) -> HttpResponse:
+    restaurant = restaurant.objects.get(id=restaurant_id)
+    Rating.objects.filter(restaurant=restaurant, user=request.user).delete()
+    restaurant.rating_set.create(user=request.user, rating=rating)
+    return index(request)
 
 # uncomment this code to call the api from the backend
 
