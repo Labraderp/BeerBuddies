@@ -18,7 +18,7 @@ export default function RestaurantPage({ handleBeerClick }) {
     <div className="RestaurantPage">
       <h2>Restaurant Page</h2>
       <div style={{display: "flex", justifyContent:'space-between'}}>
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div className="port_container" style={{display: 'flex', flexDirection: 'column'}}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <img
