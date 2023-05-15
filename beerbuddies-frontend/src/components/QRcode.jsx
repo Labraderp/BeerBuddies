@@ -4,10 +4,11 @@ import CryptoJS from 'crypto-js';
 export default function QRcode({beerid}) {
 
     const info = beerid;
+    console.log(info)
     const salt = 'ginger_bread_man'
     const saltedInfo = salt + info;
     const hash = CryptoJS.SHA256(saltedInfo).toString();
-    console.log(info)
+    
     
     const endpoint = `https://api.qrserver.com/v1/create-qr-code/?data=${hash}&amp;size=100x100`;
 
