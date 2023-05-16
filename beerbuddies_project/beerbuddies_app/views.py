@@ -74,7 +74,7 @@ def curr_user(request):
     if request.user.is_authenticated:
         print(request.user)
         user_info = serialize(
-            "json", [request.user], fields=['handle', 'email', "token_amount"])
+            "json", [request.user], fields=['handle', 'email', "token_amount", "city", "state", "beer_preference"])
         user_info_workable = json.loads(user_info)
         return JsonResponse({"curr_user": user_info_workable[0]})
     else:
@@ -119,6 +119,27 @@ def decrement_token(request):
         return JsonResponse({"success": True})
     except Exception as e:
         print(e)
+        return JsonResponse({"success": False, "reason": e})
+    
+@api_view(["POST"])
+def update_user_preferences(request):
+    try:
+        user_handle = request.data.get("user_handle", None)
+        preferences = request.data.get("preferences", {})
+        city = preferences.get("city", None)
+        state = preferences.get("state", None)
+        beer_preference = preferences.get("beerPreference", [])
+
+        user = App_User.objects.get(handle=user_handle)
+        user.city = city
+        user.state = state
+        user.beer_preference = beer_preference
+        user.save()
+
+        return JsonResponse({"success": True})
+    # except App_User.DoesNotExist:
+    #     return JsonResponse({"success": False, "reason": "User not found."})
+    except Exception as e:
         return JsonResponse({"success": False, "reason": e})
 
 

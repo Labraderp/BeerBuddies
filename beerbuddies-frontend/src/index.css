@@ -1,7 +1,9 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Merriweather', serif;
+  font-weight: 300;
   line-height: 1.5;
-  font-weight: 400;
+  /* font-weight: 400; */
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -14,7 +16,20 @@
   -webkit-text-size-adjust: 100%;
 }
 
+h1, h2 {
+  font-family: 'Alegreya', serif;
+  font-weight: 900;
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h3, h4, h5 {
+  font-family: 'Maitree', serif;
+  font-weight: 400;
+}
+
 a {
+  font-family: 'Alegreya', serif;
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
@@ -31,10 +46,10 @@ body {
   min-height: 100vh;
 }
 
-h1 {
+/* h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
+} */
 
 button {
   border-radius: 8px;
@@ -43,12 +58,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #b609f6;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: #c34aef;
 }
 button:focus,
 button:focus-visible {

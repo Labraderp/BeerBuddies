@@ -93,3 +93,16 @@ export const getCookie = () => {
         return false; // Error occurred while making the API call
       }
   }
+
+  export const updateUserPreferences = async (userHandle, preferences) => {
+    try {
+      const response = await axios.post(`update_user_preferences/`, {
+        "user_handle": userHandle,
+        "preferences": preferences
+      })
+      return response.data;
+    } catch (error) {
+        console.error('An error occurred:', error);
+        return false; // Error occurred while making the API call
+    }
+  }

@@ -40,3 +40,42 @@
 .read-the-docs {
   color: #888;
 }
+
+.user-profile-area {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.left-column {
+  text-align: right;
+  border-right: 1px solid #09f6b6;
+  padding-right: 20px;
+}
+
+.right-column {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.token-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-label {
+  font-weight: 900;
+  font-size: 18px;
+  color: #f6b609;
+}
+
+input, select, p {
+  font-family: 'Merriweather', serif;
+  font-weight: 300;
+}
+
