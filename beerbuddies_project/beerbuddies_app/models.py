@@ -36,7 +36,7 @@ class PurchasedBeer(models.Model):
     description = models.TextField(max_length=1000)
 
     def __str__(self):
-        return f"{self.name} bought by {self.user}"
+        return f"{self.name}/{self.abv}/{self.description}/{self.user}"
 
 
 class Beer(models.Model):

@@ -154,6 +154,17 @@ def beer_rate(request: HttpRequest, beer_id: int, rating: int) -> HttpResponse:
         beer=beer, user=request.user).delete()
     beer.rating_set.create(user=request.user, rating=rating)
     return beer_index(request)
+
+@api_view(["GET"])
+def purchased_beers(request, handle):
+    beerList = []
+    user = App_User.objects.get(handle=handle)
+    purchasedBeers = PurchasedBeer.objects.filter(user=user)
+    for beer in purchasedBeers:
+        beerList.append({'name': beer.name, 'abv': beer.abv, 'description' : beer.description})
+    print(beerList)
+    return JsonResponse({"beer" : beerList})
+
 # uncomment this code to call the api from the backend
 
 # @api_view(["GET"])
