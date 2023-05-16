@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BeerList from "../pages/BeerList";
 import BeerPage from "../pages/BeerPage";
+import bar3 from "../images/bar3.jpeg"
 
 export default function RestaurantPage({ handleBeerClick }) {
   const [showBeerList, setShowBeerList] = useState(false);
@@ -22,8 +23,8 @@ export default function RestaurantPage({ handleBeerClick }) {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <img
-                style={{ border: "2px dotted black", height: "200px", width: "200px" }}
-                src=""
+                style={{ maxHeight: "200px", maxWidth: "250px" }}
+                src={bar3}
                 alt=""
                 placeholder="Restaurant Picture"
               />
