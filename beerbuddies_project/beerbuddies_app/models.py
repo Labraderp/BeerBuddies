@@ -23,7 +23,7 @@ class Restaurant(models.Model):
     distance = models.DecimalField(max_digits=4, decimal_places=2)
 
     def average_rating(self) -> float:
-        return Rating.objects.filter(restaurant=self).aggregate(Avg("rating"))["rating__avg"] or 0
+        return RestaurantRating.objects.filter(restaurant=self).aggregate(Avg("rating"))["rating__avg"] or 0
 
     def __str__(self) -> str:
         return f" Restaurant Name - {self.name} | Distance - {self.distance} | Average Rating - {self.average_rating()}"
@@ -44,14 +44,26 @@ class Beer(models.Model):
     abv = models.DecimalField(max_digits=4, decimal_places=1)
     description = models.TextField(max_length=1000)
 
+    def average_rating(self) -> float:
+        return BeerRating.objects.filter(beer=self).aggregate(Avg("rating"))["rating__avg"] or 0
+
     def __str__(self):
         return f"{self.name} | {self.abv} |{self.description}"
 
 
-class Rating(models.Model):
+class RestaurantRating(models.Model):
     user = models.ForeignKey(App_User, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.user.handle} Rated {self.restaurant.name} with {self.rating} stars"
+
+
+class BeerRating(models.Model):
+    user = models.ForeignKey(App_User, on_delete=models.CASCADE)
+    beer = models.ForeignKey(Beer, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.user.handle} Rated {self.beer.name} with {self.rating} stars"

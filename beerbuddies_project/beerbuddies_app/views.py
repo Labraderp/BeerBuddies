@@ -122,21 +122,38 @@ def decrement_token(request):
         return JsonResponse({"success": False, "reason": e})
 
 
-def index(request: HttpRequest) -> HttpResponse:
+def restaurant_index(request: HttpRequest) -> HttpResponse:
     restaurants = Restaurant.objects.all()
     for restaurant in restaurants:
-        rating = Rating.objects.filter(
+        rating = RestaurantRating.objects.filter(
             restaurant=restaurant, user=request.user).first()
         restaurant.user_rating = rating.rating if rating else 0
     return render(request, "index.html", {"restaurants": restaurants})
 
 
-def rate(request: HttpRequest, restaurant_id: int, rating: int) -> HttpResponse:
+def restaurant_rate(request: HttpRequest, restaurant_id: int, rating: int) -> HttpResponse:
     restaurant = restaurant.objects.get(id=restaurant_id)
-    Rating.objects.filter(restaurant=restaurant, user=request.user).delete()
+    RestaurantRating.objects.filter(
+        restaurant=restaurant, user=request.user).delete()
     restaurant.rating_set.create(user=request.user, rating=rating)
-    return index(request)
+    return restaurant_index(request)
 
+
+def beer_index(request: HttpRequest) -> HttpResponse:
+    beers = Beer.objects.all()
+    for beer in beers:
+        rating = BeerRating.objects.filter(
+            beer=beer, user=request.user).first()
+        beer.user_rating = rating.rating if rating else 0
+    return render(request, "index.html", {"beers": beers})
+
+
+def beer_rate(request: HttpRequest, beer_id: int, rating: int) -> HttpResponse:
+    beer = beer.objects.get(id=beer_id)
+    RestaurantRating.objects.filter(
+        beer=beer, user=request.user).delete()
+    beer.rating_set.create(user=request.user, rating=rating)
+    return beer_index(request)
 # uncomment this code to call the api from the backend
 
 # @api_view(["GET"])
