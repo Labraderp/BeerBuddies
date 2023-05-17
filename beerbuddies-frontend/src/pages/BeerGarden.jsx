@@ -33,7 +33,7 @@ const BeerGarden = () => {
             <ListGroup>
             <ListGroup.Item>
                 {
-                    (beers != []) ? beers.map((beer) => <h3>{beer.name}</h3>) : <div /> 
+                    (beers != []) ? beers.map((beer) => <h3><Link to={createurl(beer.id, beer.name, user_info.user.handle)}>{beer.name}</Link></h3>) : <div /> 
                 }
             </ListGroup.Item>    
             </ListGroup>
