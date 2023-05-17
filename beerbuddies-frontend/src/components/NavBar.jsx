@@ -2,10 +2,13 @@ import { useContext } from 'react';
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import Image from 'react-bootstrap/Image'
 import { userContext } from '../App';
 import { signOut } from '../utilities';
 import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom'
+import logo from "../images/logo.png"
+
 
 export default function NavBar({setFeatures}) {
 
@@ -40,7 +43,10 @@ export default function NavBar({setFeatures}) {
     return(
         <Navbar bg="dark" variant='dark' fixed="top">
             <Container>
-                <Navbar.Brand href="#" onClick={clickHandler}>BeerBuddies</Navbar.Brand>
+                <Navbar.Brand href="#" onClick={clickHandler}>
+                BeerBuddies
+                <Image src={logo} height="30px" />
+                </Navbar.Brand>
             </Container>
                 <Container onClick={clickHandler}>
                     <Link to="#">Restaurants</Link>
@@ -58,7 +64,7 @@ export default function NavBar({setFeatures}) {
                     <Link to="#">Beer Garden</Link>
                 </Container>
 
-            <Container className="justify-content-end">
+            <Container style={{padding: '5px'}} className="justify-content-end">
                 <Navbar.Text className="justify-content-end p-2">
                     Signed in: {user.handle}
                 </Navbar.Text>

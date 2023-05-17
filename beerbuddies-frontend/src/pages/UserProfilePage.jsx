@@ -56,10 +56,11 @@ export default function UserProfilePage({}) {
     return (
         <div>
             <Container className="user-profile-area">
-            <Row>
+            <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Col className="left-column">
-                <Row>
-                    <img src={creedpic} style={{ width: '200px', height: '200px' }} />
+                <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <img src={'https://st4.depositphotos.com/1008239/31617/i/600/depositphotos_316178144-stock-photo-cheerful-friends-pub-drinking-beer.jpg'} style={{height: '200px' }} />
+                    <button style={{width: '50%', padding: '10px', marginTop: '10px'}}>Change profile picture</button>
                 </Row>
                 </Col>
                 <Col className="right-column">
@@ -154,10 +155,9 @@ export default function UserProfilePage({}) {
                     </Form.Select>
                     </Form.Group>
                     <div>
-                    <button onClick={handleSavePreferences}>Save Preferences</button>
+                    <button style={{marginTop: '10px'}} onClick={handleSavePreferences}>Save Preferences</button>
                     </div>
                 </Form>
-                {/* <Row>Recent Reviews</Row> */}
                 </Col>
             </Row>
             <div className="token-area">

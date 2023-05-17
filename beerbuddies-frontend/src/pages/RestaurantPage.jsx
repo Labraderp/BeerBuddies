@@ -48,9 +48,9 @@ export default function RestaurantPage({ handleBeerClick }) {
           {showBeerList && <BeerList handleBeerClick={handleBeerListClick} />}
         </div>
 
-        <div className="stbd_container">
-          { showBeerPage ? <BeerPage/> : <div/> }
-        </div>
+      </div>
+      <div className="stbd_container">
+        { showBeerPage ? <BeerPage/> : <div/> }
       </div>
       
 

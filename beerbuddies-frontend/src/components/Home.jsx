@@ -47,7 +47,6 @@ const Home = () => {
     <Container>
       <NavBar setFeatures={handleFeatureClick} />
       <div className="home">
-        <h1>Homepage</h1>
       </div>
       <div>
         {features === 1 && (

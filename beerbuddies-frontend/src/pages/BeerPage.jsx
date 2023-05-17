@@ -2,7 +2,8 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import creedpic from '../images/creed.jpeg'
+import Form from 'react-bootstrap/Form'
+import stout from '../images/beers/stout.jpg'
 import React, { useContext } from 'react';
 import { userContext } from '../App';
 import { decrementToken } from '../utilities';
@@ -36,22 +37,49 @@ export default function BeerPage() {
     };
 
     return(
+    //     <div>
+    //         <Container>
+    //             <Row>
+    //                 <Col>
+    //                     <Row>
+    //                     <img src={stout}></img>
+    //                     </Row>
+    //                 </Col>
+    //                 <Col>
+    //                     <Row>Beer Rating</Row>
+    //                     <Row>Beer Name</Row>
+    //                     <Row>Notes/Flavors</Row>
+    //                     <Row><Button variant='success' onClick={handleBuyBeer}>Buy Beer</Button></Row>
+    //                 </Col>
+    //             </Row>
+    //         </Container>
+    //     </div>
+    // );
+
         <div>
-            <Container>
-                <Row>
-                    <Col>
-                        <Row>
-                        <img src={creedpic}></img>
-                        Beer Rating
-                        </Row>
-                    </Col>
-                    <Col>
-                        <Row>Beer Name</Row>
-                        <Row>Notes/Flavors</Row>
-                        <Row><Button variant='success' onClick={handleBuyBeer}>Buy Beer</Button></Row>
-                    </Col>
+          <Container className="user-profile-area">
+            <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Col className="left-column">
+                <Row style={{ textAlign: 'center' }}>
+                  <img src={stout} style={{height: '500px'}}/>
                 </Row>
-            </Container>
+              </Col>
+              <Col className="right-column">
+                <Row>
+                  <Form.Label>Beer Rating:</Form.Label>
+                  <p>4.7/5</p>
+                </Row>
+                <Row>
+                  <Form.Label>Beer Name:</Form.Label>
+                  <p>PB Nitro Stout</p>
+                </Row>
+                <Row>
+                  <Form.Label>Notes/Flavors:</Form.Label>
+                  <p>Peanut Butter, Oats, Malt, Coffee</p>
+                </Row>
+              </Col>
+            </Row>
+          </Container>
         </div>
-    );
+      );
 }
