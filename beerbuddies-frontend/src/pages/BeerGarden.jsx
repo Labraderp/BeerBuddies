@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { userContext } from '../App';
-import { purchaseBeer } from '../utilities';
+import { ListGroup } from 'react-bootstrap';
 
 
 //store and update beers
@@ -10,24 +10,7 @@ const BeerGarden = () => {
     const user_info = useContext(userContext)
     const navigate = useNavigate();
 
-    const handleDecrementToken = async (beerId, beerName, userHandle ) => {
-        try {
-          const result = await purchaseBeer(user_info.user.handle, beerName);
-          if (result) {
-            const updatedUserContext = {
-              ...user_info.user,
-              token_amount: user_info.user.token_amount - 1,
-            };
-            user_info.setUser(updatedUserContext);
-            navigate(createurl(beerId, beerName, userHandle));
-
-          } else {
-            console.error('Failed to decrement token amount.');
-          }
-        } catch (error) {
-          console.error('Error:', error.message);
-        }
-      };
+    
 
     // need model and path to test this part out
     useEffect(() => {
@@ -47,12 +30,13 @@ const BeerGarden = () => {
     return (
         <div>
             <h1>Beer Garden - Purchased Beers</h1>
-            <div>
+            <ListGroup>
+            <ListGroup.Item>
                 {
                     (beers != []) ? beers.map((beer) => <h3>{beer.name}</h3>) : <div /> 
                 }
-                
-            </div>
+            </ListGroup.Item>    
+            </ListGroup>
             <h2 style={{fontStyle: 'italic', color: 'green'}}>Available Tokens: {user_info.user.token_amount}</h2>
         </div>
     );
