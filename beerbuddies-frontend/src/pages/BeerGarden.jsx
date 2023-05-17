@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { userContext } from '../App';
-import { decrementToken } from '../utilities';
+import { purchaseBeer } from '../utilities';
 
 
 //store and update beers
@@ -12,7 +12,7 @@ const BeerGarden = () => {
 
     const handleDecrementToken = async (beerId, beerName, userHandle ) => {
         try {
-          const result = await decrementToken(user_info.user.handle);
+          const result = await purchaseBeer(user_info.user.handle, beerName);
           if (result) {
             const updatedUserContext = {
               ...user_info.user,

@@ -78,10 +78,11 @@ export const getCookie = () => {
       }
   }
 
-  export const decrementToken = async (userHandle) => {
+  export const purchaseBeer = async (userHandle, beerName) => {
     try {
-        const response = await axios.post('decrement_token/', { 
-            "user_handle" : userHandle 
+        const response = await axios.post('purchaseBeer/', { 
+            "user_handle" : userHandle,
+            "beer_name" : beerName,
         });
         if (response.status === 200) {
           return true; // Token amount decremented successfully

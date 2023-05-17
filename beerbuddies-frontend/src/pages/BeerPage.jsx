@@ -6,16 +6,16 @@ import Form from 'react-bootstrap/Form'
 import stout from '../images/beers/stout.jpg'
 import React, { useContext } from 'react';
 import { userContext } from '../App';
-import { decrementToken } from '../utilities';
+import { purchaseBeer } from '../utilities';
 
-export default function BeerPage() {
+export default function BeerPage({beerName}) {
     const user_info = useContext(userContext)
 
     const handleBuyBeer = async () => {
         try {
             // Check if the user has enough tokens
             if (user_info.user.token_amount > 0) {
-                const result = await decrementToken(user_info.user.handle);
+                const result = await purchaseBeer(user_info.user.handle, beerName);
                 if (result) {
                     const updatedUserContext = {
                         ...user_info.user,
@@ -76,6 +76,9 @@ export default function BeerPage() {
                 <Row>
                   <Form.Label>Notes/Flavors:</Form.Label>
                   <p>Peanut Butter, Oats, Malt, Coffee</p>
+                </Row>
+                <Row>
+                    <Button variant='success' onClick={handleBuyBeer}>Buy Beer</Button>
                 </Row>
               </Col>
             </Row>

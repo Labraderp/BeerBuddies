@@ -5,13 +5,15 @@ import bar3 from "../images/bar3.jpeg"
 
 export default function RestaurantPage({ handleBeerClick }) {
   const [showBeerList, setShowBeerList] = useState(false);
-  const [showBeerPage, setShowBeerPage] = useState(false);
+  const [showBeerPage, setShowBeerPage] = useState("");
 
-  const handleBeerListClick = () => {
-    if (!showBeerPage) {
-      setShowBeerPage(true)
+  const handleBeerListClick = (e) => {
+    if (showBeerPage == "") {
+      console.log("opened")
+      setShowBeerPage(e.target.outerText)
     } else {
-      setShowBeerPage(false)
+      console.log("closed")
+      setShowBeerPage("")
     }
   };
 
@@ -50,7 +52,7 @@ export default function RestaurantPage({ handleBeerClick }) {
 
       </div>
       <div className="stbd_container">
-        { showBeerPage ? <BeerPage/> : <div/> }
+      { (showBeerPage != "") ? <BeerPage beerName={showBeerPage}/> : <div/> }
       </div>
       
 

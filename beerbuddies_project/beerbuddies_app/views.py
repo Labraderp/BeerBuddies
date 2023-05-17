@@ -108,11 +108,17 @@ def increment_token(request):
 
 
 @api_view(["POST"])
-def decrement_token(request):
+def purchase_beer(request):
     try:
         user_handle = request.data['user_handle']
-        user = App_User.objects.get(handle=user_handle)
+        beer_name = request.data['beer_name'].split('--')[0].strip()
 
+        user = App_User.objects.get(handle=user_handle)
+        beer = Beer.objects.get(name=beer_name)
+
+        purchasedBeer = PurchasedBeer.objects.create(user=user, name=beer.name, abv=beer.abv, description=beer.description)
+        purchasedBeer.save()
+        
         user.token_amount -= 1
         user.save()
 
