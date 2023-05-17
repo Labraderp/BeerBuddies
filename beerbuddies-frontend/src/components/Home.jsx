@@ -10,6 +10,7 @@ import BeerList from '../pages/BeerList';
 import BeerPage from '../pages/BeerPage';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
+import { Welcome } from './Welcome';
 
 const RestaurantListing = ({ name, distance, onClick }) => (
   <div className="restaurant-listing" onClick={onClick}>
@@ -47,6 +48,8 @@ const Home = () => {
     <Container>
       <NavBar setFeatures={handleFeatureClick} />
       <div className="home">
+        {features == 0 && (<Welcome/>
+        )}
       </div>
       <div>
         {features === 1 && (
