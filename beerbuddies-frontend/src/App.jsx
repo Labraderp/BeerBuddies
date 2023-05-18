@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col'
 import { currUser, signOut } from './utilities';
 import { getCookie } from './utilities'
 import Axios from 'axios';
+import biglogo from './images/biglogo.png'
 
 export const userContext = createContext(null);
 
@@ -39,6 +40,18 @@ function App() {
           </div>
           :
           <div>
+          <Row>
+          <Col className="d-flex justify-content-center">
+                <img
+                  src={biglogo}
+                  style={{
+                    width: "50%",
+                    borderRadius: "32px",
+                    marginBottom: "20px"
+                  }}
+                />
+              </Col>
+          </Row>
           <Row>
             <Col><SignUp /></Col>
             <Col><LogIn /></Col>
